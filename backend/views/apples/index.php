@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= Html::a('Regenerate apples', 'regenerate', ['class' => 'btn btn-primary'])?>
+    <?= Html::a('Regenerate apples', '/apples/regenerate', ['class' => 'btn btn-primary'])?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
