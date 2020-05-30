@@ -18,6 +18,10 @@ class Apple extends \yii\db\ActiveRecord
     const COLOR_RED    = 'red';
     const COLOR_YELLOW = 'yellow';
 
+    const STATUS_ON_TREE = 'OnTree';
+    const STATUS_FALLEN  = 'Fallen';
+    const STATUS_SPOILED = 'Spoiled';
+
     /**
      * {@inheritdoc}
      */
@@ -47,7 +51,7 @@ class Apple extends \yii\db\ActiveRecord
         return [
             'id'         => 'ID',
             'color'      => 'Color',
-            'integrity'  => 'Integrity',
+            'integrity'  => 'Integrity (%)',
             'fallen_at'  => 'Fallen At',
             'spoiled_at' => 'Spoiled At',
             'created_at' => 'Created At',
@@ -68,7 +72,31 @@ class Apple extends \yii\db\ActiveRecord
      */
     public function isSpoiled(): bool
     {
-        return $this->spoiled_at && $this->spoiled_at <= new \DateTime();
+        if (!$this->spoiled_at) {
+            return false;
+        }
+
+        $utc         = new \DateTimeZone('UTC');
+        $spoiledTime = new \DateTime($this->spoiled_at, $utc);
+        $currentTime = new \DateTime('now', $utc);
+
+        return $currentTime >= $spoiledTime;
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getStatus(): string
+    {
+        switch (true) {
+            case $this->isSpoiled():
+                return self::STATUS_SPOILED;
+            case $this->isFallen():
+                return self::STATUS_FALLEN;
+            default:
+                return self::STATUS_ON_TREE;
+        }
     }
 
     /**

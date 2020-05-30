@@ -16,6 +16,7 @@ class ApplesService
     /**
      * @param Apple $apple
      * @throws InvalidAppleActionException
+     * @throws \yii\base\InvalidConfigException
      */
     public function hit(Apple $apple): void
     {

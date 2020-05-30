@@ -40,7 +40,7 @@ class ApplesServiceTest extends \Codeception\Test\Unit
 
     /**
      * @return void
-     * @covers ::hit()
+     * @covers ::bite()
      * @throws Exception
      */
     public function testCantBiteAppleOnTree(): void
@@ -56,7 +56,7 @@ class ApplesServiceTest extends \Codeception\Test\Unit
 
     /**
      * @return void
-     * @covers ::hit()
+     * @covers ::bite()
      * @throws Exception
      */
     public function testCantBiteTooMuch(): void
@@ -72,7 +72,7 @@ class ApplesServiceTest extends \Codeception\Test\Unit
 
     /**
      * @return void
-     * @covers ::hit()
+     * @covers ::bite()
      * @throws Exception
      */
     public function testCantBiteSpoiledApple(): void
@@ -89,7 +89,7 @@ class ApplesServiceTest extends \Codeception\Test\Unit
 
     /**
      * @return void
-     * @covers ::hit()
+     * @covers ::bite()
      * @throws Exception
      */
     public function testCanBiteGoodApple(): void
