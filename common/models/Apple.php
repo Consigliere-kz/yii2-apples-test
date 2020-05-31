@@ -98,18 +98,4 @@ class Apple extends \yii\db\ActiveRecord
                 return self::STATUS_ON_TREE;
         }
     }
-
-    /**
-     * @param int $id
-     * @return static|null
-     */
-    public function findOneForUpdate(int $id): ?Apple
-    {
-        $sql = self::find()
-            ->where(['id' => $id])
-            ->createCommand()
-            ->getRawSql();
-
-        return self::findBySql($sql . ' FOR UPDATE')->one();
-    }
 }
